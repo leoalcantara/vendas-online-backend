@@ -10,7 +10,7 @@ export class UserService {
 
     constructor(    
         @InjectRepository(UserEntity)
-        private readonly userRepository: Repository<UserEntity>
+        private readonly userRepository: Repository<UserEntity>,
     ){}
     
 
@@ -21,8 +21,9 @@ export class UserService {
 
         return this.userRepository.save({
             ...CreateUserDto,
+            type_user: 1,
             password: passwordHashed,
-        })                  
+        });                  
     }  
 
     async getAllUsers(): Promise<UserEntity[]> {
